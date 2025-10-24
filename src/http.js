@@ -37,6 +37,9 @@ httpRouter.post('/users/:domain/validate', async (req, res) => {
   try {
     const resp = await fetch(['http:/', domain, 'did.pem'].join('/'))
     const text = await resp.text()
+    if (!text) {
+      return res.send({ domain, valid: false, message: 'File not found' })
+    }
     if (publicKey && text.replace(/\n/g, '') === publicKey.replace(/\n/g, '')) {
       valid = true
     }
