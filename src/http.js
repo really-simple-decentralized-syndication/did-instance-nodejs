@@ -34,9 +34,10 @@ httpRouter.post('/users/:domain/validate', async (req, res) => {
   const domain = domainValidation.value
   const publicKey = req.body.publicKey
   let valid = false
+  let text = '';
   try {
     const resp = await fetch(['http:/', domain, 'did.pem'].join('/'))
-    const text = await resp.text()
+    text = await resp.text()
     if (publicKey && text.replace(/\n/g, '') === publicKey.replace(/\n/g, '')) {
       valid = true
     }
