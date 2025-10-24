@@ -14,8 +14,8 @@ function validatePath(path = '') {
   return { valid: true, value: path }
 }
 
-function validateDomainName(domain = '') {
-  const domain = domain.toLowerCase().trim().replace(/^www\./, '');
+function validateDomainName(dom = '') {
+  const domain = dom.toLowerCase().trim().replace(/^www\./, '');
   const domainChecks = [
     {
       validator: (d = '') => {
