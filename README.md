@@ -50,6 +50,10 @@ There are several reasons for that:
 2. For easier future data synchronization, so that we could sync url data in blocks
 3. For future user actions limits implementation. There will be limited actions allowed from domain per block in order to avoid ddos and spam.
 
+## How to populate posts from another instance:
+
+`node src/populate.js -s https://instance.did-1.com -d 1692691439000`
+
 ## Roadmap
 
 This code is still at proof of concept stage! You will be able to receive realtime updates from other instances, but data synchronization is not yet implemented. That means that you will not receive past submissions that were submitted before your instance was booted
