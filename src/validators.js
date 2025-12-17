@@ -130,7 +130,7 @@ async function validateSubmission(params) {
   const verification = verify.verify(publicKey, Buffer.from(signature), message)
 
   if (!verification) {
-    return { error: `Invalid post signature` }
+    return { error: `Invalid signature for message '${message}'` }
   }
   // 5. validate block id
   const cachedBlock = await db.getBlock(blockHash)
