@@ -77,9 +77,15 @@ httpRouter.post('/users/:domain/path/validate', async (req, res) => {
 
 httpRouter.post('/users/:domain/post', async (req, res) => {
   const { hash, blockHash, signature, domain, path } = req.body
-  const signatureHex = signature
-    .map((num) => num.toString(16).padStart(2, '0'))
-    .join('')
+  if (!signature) {
+    return res.send({ error: 'Signature is missing' })
+  }
+  let signatureHex = signature;
+  if (signature instanceof Array) {
+    signatureHex = signature
+      .map((num) => num.toString(16).padStart(2, '0'))
+      .join('')
+  }
   let resp = {}
   try {
     resp = await validators.validateSubmission({
