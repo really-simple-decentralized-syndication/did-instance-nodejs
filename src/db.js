@@ -22,7 +22,9 @@ db.run(
     source TEXT NOT NULL,
     inserted_at INTEGER NOT NULL,
     dead_at INTEGER
-  );`,
+  );
+  CREATE UNIQUE INDEX IF NOT EXISTS identity ON posts(domain, path);
+  `,
   (err) => {
     if (err) {
       return winston.error(err.message) // If things go south, we'll know.
